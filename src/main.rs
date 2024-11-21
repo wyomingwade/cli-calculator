@@ -12,19 +12,16 @@ fn main() {
     let b: f64 = read!();
 
     // calculate the result
-    let result: f64 = calculate(a, operator, b);
+    let result: f64 = calculate(&a, &operator, &b);
     println!("Answer:");
     // write out the whole expression if verbose is true, otherwise just the answer
-    if VERBOSE {
-        println!("{} {} {} = {}", a, operator, b, result);
+    match VERBOSE {
+        true => println!("{} {} {} = {}", a, operator, b, result),
+        false => println!("{}", result),
     }
-    else {
-        println!("{}", result);
-    }
-    
 }
 
-fn calculate(a: f64, operator: char, b: f64) -> f64 {
+fn calculate(a: &f64, operator: &char, b: &f64) -> f64 {
     let mut result = 0.0;
 
     match operator {
